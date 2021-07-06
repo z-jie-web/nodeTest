@@ -13,8 +13,6 @@ const mongoose = require("mongoose");
 module.exports = (passport) => {
   passport.use(
     new JwtStrategy(opts, async (jwt_payload, done) => {
-      console.log(jwt_payload, "jwt_payload");
-      console.log(User, "User");
       const user = await User.findById(jwt_payload.id);
       if (user) {
         return done(null, user);
